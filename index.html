@@ -9,10 +9,13 @@
     body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f0f0f0; }
     header { background: #1e1e2f; color: white; padding: 2rem; text-align: center; }
     nav { background: #333; color: white; display: flex; justify-content: center; gap: 2rem; padding: 1rem; }
-    nav a { color: white; text-decoration: none; }
-    section { padding: 2rem; max-width: 1000px; margin: auto; background: white; margin-top: 1rem; border-radius: 10px; }
+    nav a { color: white; text-decoration: none; transition: color 0.3s ease; }
+    nav a:hover { color: #ffce00; }
+    section { padding: 2rem; max-width: 1000px; margin: auto; background: white; margin-top: 1rem; border-radius: 10px; opacity: 0; transform: translateY(20px); transition: opacity 1s ease-out, transform 1s ease-out; }
+    section.visible { opacity: 1; transform: translateY(0); }
     h2 { color: #1e1e2f; }
-    .project { margin-bottom: 1rem; }
+    .project { margin-bottom: 1rem; padding: 1rem; border-left: 4px solid #1e1e2f; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .project:hover { transform: scale(1.02); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
     footer { text-align: center; padding: 1rem; background: #1e1e2f; color: white; margin-top: 2rem; }
   </style>
 </head>
@@ -30,12 +33,12 @@
   <a href="#contact">Contact</a>
 </nav>
 
-<section id="about">
+<section id="about" class="scroll-section">
   <h2>About Me</h2>
   <p>I am an Electronics and Communication Engineering graduate with a master's in Digital Communication. I completed a 10-month internship at Philips Healthcare in the R&D Life Cycle Management team. My interests lie in AI, Embedded Systems, and Verilog-based digital design. I enjoy building smart systems and visual tools using Python and Excel.</p>
 </section>
 
-<section id="projects">
+<section id="projects" class="scroll-section">
   <h2>Projects</h2>
   <div class="project">
     <h3>Interactive Excel Dashboard (R&D Metrics)</h3>
@@ -55,12 +58,12 @@
   </div>
 </section>
 
-<section id="resume">
+<section id="resume" class="scroll-section">
   <h2>Resume</h2>
-  <p><a href="#">Download Resume (PDF)</a> <!-- Replace with actual resume link --></p>
+  <p><a href="#">Download Resume (PDF)</a></p>
 </section>
 
-<section id="contact">
+<section id="contact" class="scroll-section">
   <h2>Contact</h2>
   <p>Email: janedoe@email.com</p>
   <p>LinkedIn: <a href="https://linkedin.com/in/janedoe" target="_blank">linkedin.com/in/janedoe</a></p>
@@ -70,6 +73,26 @@
 <footer>
   <p>&copy; 2025 Jane Doe. All rights reserved.</p>
 </footer>
+
+<script>
+  const sections = document.querySelectorAll('.scroll-section');
+  const options = {
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver(function(entries, observer) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, options);
+
+  sections.forEach(section => {
+    observer.observe(section);
+  });
+</script>
 
 </body>
 </html>
