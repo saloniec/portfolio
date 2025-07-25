@@ -3,95 +3,254 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ECE Portfolio</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>Saloni Sahu | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f0f0f0; }
-    header { background: #1e1e2f; color: white; padding: 2rem; text-align: center; }
-    nav { background: #333; color: white; display: flex; justify-content: center; gap: 2rem; padding: 1rem; }
-    nav a { color: white; text-decoration: none; transition: color 0.3s ease; }
-    nav a:hover { color: #ffce00; }
-    section { padding: 2rem; max-width: 1000px; margin: auto; background: white; margin-top: 1rem; border-radius: 10px; opacity: 0; transform: translateY(20px); transition: opacity 1s ease-out, transform 1s ease-out; }
-    section.visible { opacity: 1; transform: translateY(0); }
-    h2 { color: #1e1e2f; }
-    .project { margin-bottom: 1rem; padding: 1rem; border-left: 4px solid #1e1e2f; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-    .project:hover { transform: scale(1.02); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-    footer { text-align: center; padding: 1rem; background: #1e1e2f; color: white; margin-top: 2rem; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #fdfbfb, #ebedee);
+      scroll-behavior: smooth;
+      color: #222;
+    }
+    header {
+      background: linear-gradient(to right, #8e2de2, #4a00e0);
+      color: white;
+      padding: 5rem 1rem 3rem;
+      text-align: center;
+      animation: fadeIn 1.5s ease forwards;
+    }
+    header h1 {
+      font-size: 3rem;
+    }
+    header p {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
+    nav {
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      padding: 1rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: #4a00e0;
+      font-weight: 500;
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #4a00e0;
+      transition: width 0.3s;
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+    section {
+      max-width: 1100px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+    }
+    h2 {
+      font-size: 2rem;
+      color: #4a00e0;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .card {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    }
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 600px;
+      width: 90%;
+      animation: fadeIn 0.4s ease forwards;
+    }
+    .modal-content h3 {
+      margin-bottom: 1rem;
+      color: #4a00e0;
+    }
+    .modal-content p {
+      font-size: 1rem;
+    }
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      font-size: 1.5rem;
+      color: white;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      background: #4a00e0;
+      color: white;
+      padding: 2rem 1rem;
+      margin-top: 4rem;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
   </style>
 </head>
 <body>
 
 <header>
-  <h1>Jane Doe</h1>
-  <p>M.Tech in Digital Communication | AI & Embedded Systems Enthusiast</p>
+  <h1>Saloni Sahu</h1>
+  <p>M.Tech in Digital Communication | AI Enthusiast</p>
 </header>
 
 <nav>
   <a href="#about">About</a>
   <a href="#projects">Projects</a>
-  <a href="#resume">Resume</a>
+  <a href="#thesis">Thesis</a>
+  <a href="#internship">Internship</a>
+  <a href="#academics">Academics</a>
   <a href="#contact">Contact</a>
 </nav>
 
-<section id="about" class="scroll-section">
+<section id="about">
   <h2>About Me</h2>
-  <p>I am an Electronics and Communication Engineering graduate with a master's in Digital Communication. I completed a 10-month internship at Philips Healthcare in the R&D Life Cycle Management team. My interests lie in AI, Embedded Systems, and Verilog-based digital design. I enjoy building smart systems and visual tools using Python and Excel.</p>
+  <p style="text-align: center; max-width: 700px; margin: auto;">
+    I am an Electronics and Communication Engineering graduate with a master's in Digital Communication from NIT Bhopal. I interned at Philips Healthcare in the R&D LCM team. I’m passionate about AI and Python development, and love blending logic with creativity in projects.
+  </p>
 </section>
 
-<section id="projects" class="scroll-section">
-  <h2>Projects</h2>
-  <div class="project">
-    <h3>Interactive Excel Dashboard (R&D Metrics)</h3>
-    <p>Simulated a real-world R&D dashboard with product lifecycle tracking, KPI charts, slicers, and pivot tables in Excel.</p>
-  </div>
-  <div class="project">
-    <h3>CT Image Classifier (CNN + VGG19)</h3>
-    <p>Developed a deep learning model to classify CT scans into six classes (COVID-19, Pneumonia, Cancer, etc.) using VGG19 architecture.</p>
-  </div>
-  <div class="project">
-    <h3>Verilog FSM – Traffic Light Controller</h3>
-    <p>Designed and simulated an FSM in Verilog to manage a traffic light with pedestrian support using Vivado.</p>
-  </div>
-  <div class="project">
-    <h3>Digital Art Generator (Python Turtle)</h3>
-    <p>Created a Python Turtle application to draw fractals, mandalas, and spirals using random color and pattern generation.</p>
+<section id="skills">
+  <h2>Skills</h2>
+  <ul style="text-align:center; list-style: none; padding: 0;">
+    <li>Python, Verilog, MATLAB, Excel (Dashboarding)</li>
+    <li>TensorFlow, Keras, OpenCV</li>
+    <li>Windchill, ClearQuest, CodeSoft</li>
+    
+  </ul>
+</section>
+
+
+
+<section id="projects">
+  <h2>Featured Projects</h2>
+  <div class="grid">
+    <div class="card" onclick="openModal('mux')">
+      <h3>4x1 Multiplexer using Verilog</h3>
+    </div>
+    <div class="card" onclick="openModal('mandala')">
+      <h3>Mandala Art Generator (Python)</h3>
+    </div>
   </div>
 </section>
 
-<section id="resume" class="scroll-section">
-  <h2>Resume</h2>
-  <p><a href="#">Download Resume (PDF)</a></p>
+<section id="thesis">
+  <h2>Thesis</h2>
+  <div class="grid">
+    <div class="card" onclick="openModal('lung')">
+      <h3>CT Image Lung Disease Classification</h3>
+    </div>
+  </div>
 </section>
 
-<section id="contact" class="scroll-section">
+<section id="internship">
+  <h2>Internship</h2>
+  <p style="text-align: center; max-width: 700px; margin: auto;">
+    Completed a 10-month internship at Philips Healthcare in the R&D Life Cycle Management (LCM) team. Worked with tools such as Excel, Windchill, ClearQuest, and CodeSoft. Contributed to documentation, testing processes, and data handling.
+  </p>
+</section>
+
+<section id="academics">
+  <h2>Academics</h2>
+  <p style="text-align: center; max-width: 700px; margin: auto;">
+    <strong>M.Tech in Digital Communication</strong> – NIT Bhopal<br>
+    <strong>B.Tech in Electronics and Communication Engineering</strong> – LNCT Bhopal<br>
+    
+  </p>
+</section>
+
+<section id="contact">
   <h2>Contact</h2>
-  <p>Email: janedoe@email.com</p>
-  <p>LinkedIn: <a href="https://linkedin.com/in/janedoe" target="_blank">linkedin.com/in/janedoe</a></p>
-  <p>GitHub: <a href="https://github.com/janedoe" target="_blank">github.com/janedoe</a></p>
+  <p style="text-align: center">
+    Email: saloni.sahu12@gmail.com<br>
+    LinkedIn: <a href="https://www.linkedin.com/in/salonisahuec/" target="_blank">linkedin.com/in/salonisahuec</a><br>
+    GitHub: <a href="https://github.com/saloniec" target="_blank">github.com/saloniec</a>
+  </p>
 </section>
 
 <footer>
-  <p>&copy; 2025 Jane Doe. All rights reserved.</p>
+  <p>&copy; 2025 Saloni Sahu. All rights reserved.</p>
 </footer>
 
+<div class="modal" id="modal">
+  <div class="modal-close" onclick="closeModal()">&times;</div>
+  <div class="modal-content" id="modalContent"></div>
+</div>
+
 <script>
-  const sections = document.querySelectorAll('.scroll-section');
-  const options = {
-    threshold: 0.1
+  const modal = document.getElementById('modal');
+  const modalContent = document.getElementById('modalContent');
+
+  const projects = {
+    mux: {
+      title: '4x1 Multiplexer using Verilog',
+      desc: 'A 4x1 multiplexer was designed and implemented using Verilog in Xilinx Vivado. The project involved writing Verilog code, simulating the design, and verifying functionality using testbenches. The multiplexer selects one of the four inputs based on control signals and produces the correct output.'
+    },
+    mandala: {
+      title: 'Mandala Art Generator | Python (Turtle)',
+      desc: 'Created a layered mandala pattern generator using geometric loops. Improved understanding of graphics programming and Python logic.'
+    },
+    lung: {
+      title: 'Multi-Class Lung Disease Classification Using Deep Learning with CT Images',
+      desc: 'Developed a deep learning-based classification model to identify six lung conditions (including COVID-19, pneumonia, and lung cancer) from CT scan images. Used CNN and VGG19 architectures with transfer learning, data preprocessing, and augmentation techniques. Implemented using Python, TensorFlow, and Keras as part of M.Tech thesis at NIT Bhopal.'
+    }
   };
 
-  const observer = new IntersectionObserver(function(entries, observer) {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, options);
-
-  sections.forEach(section => {
-    observer.observe(section);
-  });
+  function openModal(key) {
+    modalContent.innerHTML = `<h3>${projects[key].title}</h3><p>${projects[key].desc}</p>`;
+    modal.style.display = 'flex';
+  }
+  function closeModal() {
+    modal.style.display = 'none';
+  }
 </script>
 
 </body>
